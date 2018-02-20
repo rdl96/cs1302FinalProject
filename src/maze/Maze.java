@@ -17,7 +17,9 @@ public class Maze {
 
 
     public Maze(int[][] arrMaze) {
-        this.maze =arrMaze;
+        this.maze=arrMaze;
+        r= maze.length-1;
+        c=0;
      }
 
     //Prints out the maze without solution
@@ -26,16 +28,30 @@ public class Maze {
 
             for (int n = 0; n<maze[i].length; n++){
                 if (maze[i][n]==0){
-                    System.out.println('#');
+                    System.out.print('#');
                 }
-                else{System.out.println(" ");}
+                else{System.out.print(" ");}
             }
+            System.out.println();
         }
 
     }
 
     //displays the Maze with the path taken
     public void displayPath() {
+        for (int i=0; i< maze.length; i++) {
+
+            for (int n = 0; n<maze[i].length; n++){
+                if (i==r && n==c){
+                    System.out.print('@');
+                }
+                else if(maze[i][n]==1) {
+                    System.out.print(" ");
+                }
+                else {System.out.print("#");}
+            }
+            System.out.println();
+        }
 
     }
 
