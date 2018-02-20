@@ -11,15 +11,26 @@ public class Maze {
     private int r;  // x position of the mouse
     private int c;  //y position of the mouse
     private boolean exitFound = false;
+    int[][] maze;
 
 
 
 
     public Maze(int[][] arrMaze) {
+        this.maze =arrMaze;
      }
 
     //Prints out the maze without solution
     public void displayMaze() {
+        for (int i=0; i< maze.length; i++) {
+
+            for (int n = 0; n<maze[i].length; n++){
+                if (maze[i][n]==0){
+                    System.out.println('#');
+                }
+                else{System.out.println(" ");}
+            }
+        }
 
     }
 
