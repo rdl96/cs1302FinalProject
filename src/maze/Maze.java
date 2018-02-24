@@ -136,12 +136,68 @@ public class Maze {
 
     private boolean isAnExit() {
         //complete the code here
-        return exitFound;
-    }
+       +
 
     //finds the path without stopping at every step
     public void findExit() {
         //complete the code here
+ int i = stack.peek().getRow();
+		int n = stack.peek().getCol();
+		map[n][j] = 1;
+		
+		if (!bottom(i, n) && !right(i, n) && !up(i, n) && !left(i, n)) {
+			if (exitFound()) {
+				if (steps < numSteps) {
+					numSteps = steps;
+					copyPath();
+				}
+			}
+			stack.pop();
+			return;
+		}
 
+		if (exitFound()) {
+			if (steps < numSteps) {
+				numSteps = steps;
+				copyPath();
+			}
+			stack.pop();
+			return;
+		}
+		else {
+			//Go down
+			if (bottom(i, n)) {
+				stack.push(new Coordinate(i+1, n));
+				findExit(steps+1);
+			}
+			//Go right
+			if (right(i, n)) {
+				stack.push(new Coordinate(i, n+1));
+				findExit(steps+1);
+			}
+			//Go up
+			if (up(i, n)) {
+				stack.push(new Coordinate(i-1, n));
+				findExit(steps+1);
+			}
+			//Go left
+			if (left(i, n)) {
+				stack.push(new Coordinate(i, n-1));
+				findExit(steps+1);
+			}
+			
+			//Explored all the possible directions
+			stack.pop();
+		}
+		
+		if (stack.empty()) return;
+}
+        return exitFound;
+        
+        public boolean exitFound() {
+		if (stack.peek().getCol() == size-1 || stack.peek().getRow() == 0 || stack.peek().getRow() == size-1)
+			return true;
+return false;
+    }
     }
 }
