@@ -1,7 +1,7 @@
 package maze;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-
 /**
  * Created by Tulin Kilinc 1/19/2017.
  * KSU Programming Principles II
@@ -12,6 +12,7 @@ public class Maze {
     private char direction;
     private int r;  // x position of the mouse
     private int c;  //y position of the mouse
+    private  int stepCounter;
     private boolean exitFound = false;
     int[][] maze;
 
@@ -67,16 +68,33 @@ public class Maze {
         String direction= scan.nextLine();
 
         if (direction.equalsIgnoreCase("up")){
-            moveNorth();
+            if (r-1<0){
+                System.out.println("cannot move any further in this direction\n please try again");
+                takeStep();
+            }
+            else{moveNorth();}
+            
         }
         else if (direction.equalsIgnoreCase("down")){
+            if (r+1>maze.length-1){
+                System.out.println("cannot move any further in this direction\nplease try again");
+                takeStep();
+            }
             moveSouth();
         }
         else if (direction.equalsIgnoreCase("left")){
-            moveWest();
+            if(c-1<0){
+                System.out.println("cannot move any further in this direction\nplease try again");
+                takeStep();
+            }
+            else{moveWest();}
         }
         else if (direction.equalsIgnoreCase("right")){
-            moveEast();
+            if(c+1>maze[r].length){
+                System.out.println("cannot move any further in this direction\nplease try again");
+                takeStep();
+            }
+            else{moveEast();}
         }
         else {
             System.out.println("Direction does not exist. Please try again");
@@ -87,61 +105,35 @@ public class Maze {
     }
 
     private void moveNorth() {
-        if (r-1<0){
-            System.out.println("cannot move any further in this direction\n please try again");
-            takeStep();
-        }
-        else if(maze[r-1][c]!= 0){
-            maze[r][c] =3;
-            r--;
-        }
-
+        maze[r][c] =3;
+        r--;
+        stepCounter++;
     }
 
     private void moveSouth() {
-        if (r+1>maze.length-1){
-            System.out.println("cannot move any further in this direction\nplease try again");
-            takeStep();
-        }
-        else if(maze[r+1][c]!= 0){
-            maze[r][c] =3;
-            r++;
-        }
+        maze[r][c] =3;
+        r++;
+        stepCounter++;
     }
 
     private void moveEast() {
-        if(c+1>maze[r].length){
-            System.out.println("cannot move any further in this direction\nplease try again");
-            takeStep();
-        }
-        else if(maze[r][c+1]!= 0){
-            maze[r][c] =3;
-            c++;
-        }
-
+        maze[r][c] =3;
+        c++;
+        stepCounter++;
     }
 
     private void moveWest() {
-        if(c-1<0){
-            System.out.println("cannot move any further in this direction\nplease try again");
-            takeStep();
-        }
-        else if(maze[r][c-1]!= 0){
-            maze[r][c] =3;
-            c--;
-        }
-
+        maze[r][c] =3;
+        c--;
+        stepCounter++;
     }
 
 
     private boolean isAnExit() {
-        //complete the code here
+        if((r == 0 || c ==0 || c == maze[r].length|| r ==maze.length) && r != maze.length-2 && r != maze.length-1) {
+            exitFound = true;
+        }
+        else {exitFound= false;}
+
         return exitFound;
     }
-
-    //finds the path without stopping at every step
-    public void findExit() {
-        //complete the code here
-
-    }
-}
