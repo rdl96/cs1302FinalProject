@@ -137,3 +137,5 @@ public class Maze {
 
         return exitFound;
     }
+    public void findExit() {}
+}
