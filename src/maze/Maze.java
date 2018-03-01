@@ -137,5 +137,17 @@ public class Maze {
 
         return exitFound;
     }
+    public void findExit() {
     public void findExit() {}
+private boolean valid (int r, int c) {
+        boolean result = false;
+        if (r>= 0 && r < maze.length && c >= 0 && c < maze[0].length)
+
+    if (maze[r][c] == 1)
+        result = true;
+
+        return result;
+
+    }
+
 }
