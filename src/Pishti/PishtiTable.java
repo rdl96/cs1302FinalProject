@@ -51,6 +51,18 @@ public class PishtiTable extends Application{
         ImageView cardBacks4 = new ImageView("Pishti/card/b2fv.png");
 
         Scene scene = new Scene(borderPane, 440,410,Color.GREEN);
+        
+          TextField tfMessage = new TextField("Player");
+        tfMessage.setEditable(false);
+        tfMessage.setStyle("-fx-text-fill: Blue");
+        tfMessage.setFont(Font.font("Times",14));
+        tfMessage.setAlignment(); //where to place text field
+
+        TextField tfMessage2 = new TextField("Opponant");
+        tfMessage2.setEditable(false);
+        tfMessage2.setStyle("-fx-text-fill: Red");
+        tfMessage2.setFont(Font.font("Times",14));
+        tfMessage2.setAlignment(); //where to place text field
 
 
         HBox hBoxTop = new HBox();
