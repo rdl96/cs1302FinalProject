@@ -35,7 +35,8 @@ public class Ai implements Game {
         if (currentHandSize == 0){
             currentHandSize = 3;
         }
-        int card = (int) Math.random()*currentHandSize;
+        int card = (int) (Math.random() * 4 );
+
         Boolean turner = false;
 
         for (int i= 0; i < currentHandSize; i++){
@@ -46,7 +47,8 @@ public class Ai implements Game {
 
         while (!turner) {
             if ((cardnum[currentHand.get(card)] == 11 && currentHand.size() > 1)) {
-                card = (int) Math.random() *currentHandSize;
+                card = (int) (Math.random() * 4 );
+
                 turner = false;
             }
             else{
